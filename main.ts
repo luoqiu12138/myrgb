@@ -73,7 +73,7 @@ namespace neopixel {
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="设置%strip显示彩虹 起始值|%startHue结束值|%endHue"
+        //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹 起始值%startHue|结束值%endHue|"
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
@@ -140,7 +140,7 @@ namespace neopixel {
          * @param pixeloffset position of the NeoPixel in the strip
          * @param rgb RGB color of the LED
          */
-        //% blockId="neopixel_set_pixel_color" block="设置%strip|第%pixeloffset个灯珠|设置为%rgb=neopixel_colors"
+        //% blockId="neopixel_set_pixel_color" block="设置%strip|第%pixeloffset|个灯珠设置为%rgb=neopixel_colors"
         //% strip.defl=strip
         //% blockGap=8
         //% weight=80
