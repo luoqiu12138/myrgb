@@ -1,0 +1,25 @@
+{
+    "name": "myrgb",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "ws2812b": "github:microsoft/pxt-ws2812b#v0.1.1",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "6.0.25",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
