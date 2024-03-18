@@ -58,7 +58,7 @@ namespace neopixel {
          * Shows all LEDs to a given color (range 0-255 for r, g, b).
          * @param rgb RGB color of the LED
          */
-        //% blockId="neopixel_set_strip_color" block="%strip|show color %rgb=neopixel_colors"
+        //% blockId="neopixel_set_strip_color" block="设置%strip|灯珠颜色为%rgb=neopixel_colors"
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
@@ -190,7 +190,7 @@ namespace neopixel {
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
-        //% blockId="neopixel_set_brightness" block="%strip|set brightness %brightness" blockGap=8
+        //% blockId="neopixel_set_brightness" block="设置%strip|灯珠亮度为%brightness" blockGap=8
         //% strip.defl=strip
         //% weight=59
         //% parts="neopixel" advanced=true
@@ -199,40 +199,12 @@ namespace neopixel {
         }
 
         /**
-         * Apply brightness to current colors using a quadratic easing function.
-         **/
-        //% blockId="neopixel_each_brightness" block="设置%strip|灯珠亮度为%brightness" blockGap=8
-        //% strip.defl=strip
-        //% weight=58
-        //% parts="neopixel" advanced=true
-        easeBrightness(): void {
-            const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
-            const br = this.brightness;
-            const buf = this.buf;
-            const end = this.start + this._length;
-            const mid = Math.idiv(this._length, 2);
-            for (let i = this.start; i < end; ++i) {
-                const k = i - this.start;
-                const ledoffset = i * stride;
-                const br = k > mid
-                    ? Math.idiv(255 * (this._length - 1 - k) * (this._length - 1 - k), (mid * mid))
-                    : Math.idiv(255 * k * k, (mid * mid));
-                const r = (buf[ledoffset + 0] * br) >> 8; buf[ledoffset + 0] = r;
-                const g = (buf[ledoffset + 1] * br) >> 8; buf[ledoffset + 1] = g;
-                const b = (buf[ledoffset + 2] * br) >> 8; buf[ledoffset + 2] = b;
-                if (stride == 4) {
-                    const w = (buf[ledoffset + 3] * br) >> 8; buf[ledoffset + 3] = w;
-                }
-            }
-        }
-
-        /**
          * Create a range of LEDs.
          * @param start offset in the LED strip to start the range
          * @param length number of LEDs in the range. eg: 4
          */
         //% weight=89
-        //% blockId="neopixel_range" block="%strip|range from %start|with %length|leds"
+        //% blockId="neopixel_range" block="%strip|范围从%start开始|长度%为length"
         //% strip.defl=strip
         //% parts="neopixel"
         //% blockSetVariable=range
@@ -255,7 +227,7 @@ namespace neopixel {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to shift forward, eg: 1
          */
-        //% blockId="neopixel_shift" block="%strip|shift pixels by %offset" blockGap=8
+        //% blockId="neopixel_shift" block="将%strip|的灯珠向前移动%offset个单位" blockGap=8
         //% strip.defl=strip
         //% weight=40
         //% parts="neopixel"
@@ -270,7 +242,7 @@ namespace neopixel {
          * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% blockId="neopixel_rotate" block="%strip|rotate pixels by %offset" blockGap=8
+        //% blockId="neopixel_rotate" block="将%strip|的灯珠向前移动%offset个单位并一直循环" blockGap=8
         //% strip.defl=strip
         //% weight=39
         //% parts="neopixel"
@@ -423,7 +395,7 @@ namespace neopixel {
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
     //% weight=1
-    //% blockId="neopixel_rgb" block="red %red|green %green|blue %blue"
+    //% blockId="neopixel_rgb" block="R%red|G%green|B%blue"
     //% advanced=true
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
@@ -461,7 +433,7 @@ namespace neopixel {
      * @param s saturation from 0 to 99
      * @param l luminosity from 0 to 99
      */
-    //% blockId=neopixelHSL block="hue %h|saturation %s|luminosity %l"
+    //% blockId=neopixelHSL block="色调%h|饱和度%s|亮度%l"
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
