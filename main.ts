@@ -73,7 +73,7 @@ namespace neopixel {
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹  起始值 %startHue|结束值 %endHue"
+        //% blockId="neopixel_set_strip_rainbow" block="设置%strip显示彩虹 起始值|%startHue结束值|%endHue"
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
