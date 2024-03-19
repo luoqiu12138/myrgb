@@ -75,7 +75,7 @@ namespace neopixel {
          */
         //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹 开始色相值为%startHue|结束色相值为%endHue"
         //% strip.defl=strip
-        //% weight=85 blockGap=8
+        //% weight=60 blockGap=8
         //% parts="neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
@@ -177,7 +177,7 @@ namespace neopixel {
          */
         //% blockId="neopixel_set_brightness" block="设置%strip|所有灯珠亮度为%brightness" blockGap=8
         //% strip.defl=strip
-        //% weight=59
+        //% weight=85
         //% parts="neopixel" 
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
@@ -202,7 +202,7 @@ namespace neopixel {
          * Rotate LEDs forward.
          * @param offset number of pixels to rotate forward, eg: 1
          */
-        //% blockId="neopixel_rotate" block="将%strip|灯珠以%offset个单位向前循环移动" blockGap=8
+        //% blockId="neopixel_rotate" block="将%strip|灯珠以%offset个单位向前循环移动  |" blockGap=8
         //% strip.defl=strip
         //% weight=39
         //% parts="neopixel"
@@ -336,7 +336,7 @@ namespace neopixel {
      * @param green value of the green channel between 0 and 255. eg: 255
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
-    //% weight=1
+    //% weight=15 blockGap=8
     //% blockId="neopixel_rgb" block="R%red|G%green|B%blue"
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
@@ -345,7 +345,7 @@ namespace neopixel {
     /**
      * Gets the RGB value of a known color
     */
-    //% weight=2 blockGap=8
+    //% weight=5 blockGap=8
     //% blockId="neopixel_colors" block="%color"
     export function colors(color: NeoPixelColors): number {
         return color;
@@ -374,6 +374,7 @@ namespace neopixel {
      * @param l luminosity from 0 to 99
      */
     //% blockId=neopixelHSL block="色调%h|饱和度%s|亮度%l"
+    //% weight=2 blockGap=10
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
