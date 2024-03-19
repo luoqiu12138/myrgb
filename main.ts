@@ -55,7 +55,7 @@ namespace neopixel {
         _matrixWidth: number; // number of leds in a matrix - if any
 
         /**
-         * Shows all LEDs to a given color (range 0-255 for r, g, b).
+         * 设置所有灯珠的颜色
          * @param rgb RGB color of the LED
          */
         //% blockId="neopixel_set_strip_color" block="设置%strip|所有灯珠的颜色为%rgb=neopixel_colors"
@@ -132,7 +132,7 @@ namespace neopixel {
 
 
         /**
-         * Set LED to a given color (range 0-255 for r, g, b).
+         * 给指定灯珠设置颜色
          * @param pixeloffset position of the NeoPixel in the strip
          * @param rgb RGB color of the LED
          */
@@ -154,7 +154,7 @@ namespace neopixel {
         }
 
         /**
-         * Turn off all LEDs.
+         * 关闭灯珠
          */
         //% blockId="neopixel_clear" block="关闭%strip|所有灯珠"
         //% strip.defl=strip
@@ -168,7 +168,7 @@ namespace neopixel {
 
 
         /**
-         * Set the brightness of the strip. This flag only applies to future operation.
+         * 设置灯条亮度. 适用于之后的操作
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
         //% blockId="neopixel_set_brightness" block="设置%strip|所有灯珠亮度为 %brightness|" blockGap=8
@@ -180,7 +180,7 @@ namespace neopixel {
         }
 
         /**
-         * Shift LEDs forward and clear with zeros.
+         * 将led向前移动并清零
          * @param offset number of pixels to shift forward, eg: 1
          */
         //% blockId="neopixel_shift" block="将%strip|的灯珠向前移动%offset个单位" blockGap=8
@@ -195,7 +195,7 @@ namespace neopixel {
         }
 
         /**
-         * Rotate LEDs forward.
+         * 循环向前移动灯珠
          * @param offset number of pixels to rotate forward, eg: 1
          */
         //% blockId="neopixel_rotate" block="将%strip|灯珠以%offset个单位向前循环移动  |" blockGap=8
@@ -304,7 +304,7 @@ namespace neopixel {
     }
 
     /**
-     * Create a new NeoPixel driver for `numleds` LEDs.
+     * 创建驱动灯条
      * @param pin the pin where the neopixel is connected.
      * @param numleds number of leds in the strip, eg: 24,30,60,64
      */
@@ -339,7 +339,7 @@ namespace neopixel {
     }
 
     /**
-     * Gets the RGB value of a known color
+     * 获取已知颜色的RGB颜色
     */
     //% weight=5 blockGap=8
     //% blockId="neopixel_colors" block="%color"
@@ -364,7 +364,7 @@ namespace neopixel {
     }
 
     /**
-     * Converts a hue saturation luminosity value into a RGB color
+     * 将色调,饱和度,亮度转化为RGB值
      * @param h hue from 0 to 360
      * @param s saturation from 0 to 99
      * @param l luminosity from 0 to 99
