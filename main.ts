@@ -167,7 +167,7 @@ namespace neopixel {
          * Turn off all LEDs.
          * You need to call ``show`` to make the changes visible.
          */
-        //% blockId="neopixel_clear" block="%strip|clear"
+        //% blockId="neopixel_clear" block="关闭%strip|所有灯珠"
         //% strip.defl=strip
         //% weight=76
         //% parts="neopixel"
@@ -179,7 +179,7 @@ namespace neopixel {
         /**
          * Gets the number of pixels declared on the strip
          */
-        //% blockId="neopixel_length" block="%strip|length" blockGap=8
+        //% blockId="neopixel_length" block="%strip|中设置的灯珠个数" blockGap=8
         //% strip.defl=strip
         //% weight=60 
         length() {
@@ -190,40 +190,12 @@ namespace neopixel {
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
-        //% blockId="neopixel_set_brightness" block="%strip|set brightness %brightness" blockGap=8
+        //% blockId="neopixel_set_brightness" block="设置%strip|亮度为%brightness" blockGap=8
         //% strip.defl=strip
         //% weight=59
         //% parts="neopixel"
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
-        }
-
-        /**
-         * Apply brightness to current colors using a quadratic easing function.
-         **/
-        //% blockId="neopixel_each_brightness" block="%strip|ease brightness" blockGap=8
-        //% strip.defl=strip
-        //% weight=58
-        //% parts="neopixel"
-        easeBrightness(): void {
-            const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
-            const br = this.brightness;
-            const buf = this.buf;
-            const end = this.start + this._length;
-            const mid = Math.idiv(this._length, 2);
-            for (let i = this.start; i < end; ++i) {
-                const k = i - this.start;
-                const ledoffset = i * stride;
-                const br = k > mid
-                    ? Math.idiv(255 * (this._length - 1 - k) * (this._length - 1 - k), (mid * mid))
-                    : Math.idiv(255 * k * k, (mid * mid));
-                const r = (buf[ledoffset + 0] * br) >> 8; buf[ledoffset + 0] = r;
-                const g = (buf[ledoffset + 1] * br) >> 8; buf[ledoffset + 1] = g;
-                const b = (buf[ledoffset + 2] * br) >> 8; buf[ledoffset + 2] = b;
-                if (stride == 4) {
-                    const w = (buf[ledoffset + 3] * br) >> 8; buf[ledoffset + 3] = w;
-                }
-            }
         }
 
         /**
