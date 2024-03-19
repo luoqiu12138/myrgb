@@ -58,7 +58,7 @@ namespace neopixel {
          * Shows all LEDs to a given color (range 0-255 for r, g, b).
          * @param rgb RGB color of the LED
          */
-        //% blockId="neopixel_set_strip_color" block="%strip|show color %rgb=neopixel_colors"
+        //% blockId="neopixel_set_strip_color" block="设置%strip|所有灯珠的颜色为%rgb=neopixel_colors"
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
@@ -150,13 +150,7 @@ namespace neopixel {
             ws2812b.sendBuffer(this.buf, this.pin);
         }
 
-        /**
-         * Send all the changes to the strip.
-         */
-        //% blockId="neopixel_show" block="%strip|show" blockGap=8
-        //% strip.defl=strip
-        //% weight=79
-        //% parts="neopixel"
+
         show() {
             // only supported in beta
             // ws2812b.setBufferMode(this.pin, this._mode);
@@ -187,30 +181,6 @@ namespace neopixel {
         //% parts="neopixel" 
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
-        }
-
-        /**
-         * Create a range of LEDs.
-         * @param start offset in the LED strip to start the range
-         * @param length number of LEDs in the range. eg: 4
-         */
-        //% weight=89
-        //% blockId="neopixel_range" block="%strip|range from %start|with %length|leds"
-        //% strip.defl=strip
-        //% parts="neopixel"
-        //% blockSetVariable=range
-        range(start: number, length: number): Strip {
-            start = start >> 0;
-            length = length >> 0;
-            let strip = new Strip();
-            strip.buf = this.buf;
-            strip.pin = this.pin;
-            strip.brightness = this.brightness;
-            strip.start = this.start + Math.clamp(0, this._length - 1, start);
-            strip._length = Math.clamp(0, this._length - (strip.start - this.start), length);
-            strip._matrixWidth = 0;
-            strip._mode = this._mode;
-            return strip;
         }
 
         /**
