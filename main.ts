@@ -134,44 +134,6 @@ namespace neopixel {
             this.show();
         }
 
-        /**
-         * Displays a vertical bar graph based on the `value` and `high` value.
-         * If `high` is 0, the chart gets adjusted automatically.
-         * @param value current value to plot
-         * @param high maximum value, eg: 255
-         */
-        //% weight=84
-        //% blockId=neopixel_show_bar_graph block="%strip|show bar graph of %value|up to %high"
-        //% strip.defl=strip
-        //% icon="\uf080"
-        //% parts="neopixel"
-        showBarGraph(value: number, high: number): void {
-            if (high <= 0) {
-                this.clear();
-                this.setPixelColor(0, NeoPixelColors.Yellow);
-                this.show();
-                return;
-            }
-
-            value = Math.abs(value);
-            const n = this._length;
-            const n1 = n - 1;
-            let v = Math.idiv((value * n), high);
-            if (v == 0) {
-                this.setPixelColor(0, 0x666600);
-                for (let i = 1; i < n; ++i)
-                    this.setPixelColor(i, 0);
-            } else {
-                for (let i = 0; i < n; ++i) {
-                    if (i <= v) {
-                        const b = Math.idiv(i * 255, n1);
-                        this.setPixelColor(i, neopixel.rgb(b, 0, 255 - b));
-                    }
-                    else this.setPixelColor(i, 0);
-                }
-            }
-            this.show();
-        }
 
         /**
          * Set LED to a given color (range 0-255 for r, g, b).
@@ -183,61 +145,12 @@ namespace neopixel {
         //% strip.defl=strip
         //% blockGap=8
         //% weight=80
-        //% parts="neopixel" advanced=true
+        //% parts="neopixel"
         setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
         }
 
-        /**
-         * Sets the number of pixels in a matrix shaped strip
-         * @param width number of pixels in a row
-         */
-        //% blockId=neopixel_set_matrix_width block="%strip|set matrix width %width"
-        //% strip.defl=strip
-        //% blockGap=8
-        //% weight=5
-        //% parts="neopixel" advanced=true
-        setMatrixWidth(width: number) {
-            this._matrixWidth = Math.min(this._length, width >> 0);
-        }
 
-        /**
-         * Set LED to a given color (range 0-255 for r, g, b) in a matrix shaped strip
-         * You need to call ``show`` to make the changes visible.
-         * @param x horizontal position
-         * @param y horizontal position
-         * @param rgb RGB color of the LED
-         */
-        //% blockId="neopixel_set_matrix_color" block="%strip|set matrix color at x %x|y %y|to %rgb=neopixel_colors"
-        //% strip.defl=strip
-        //% weight=4
-        //% parts="neopixel" advanced=true
-        setMatrixColor(x: number, y: number, rgb: number) {
-            if (this._matrixWidth <= 0) return; // not a matrix, ignore
-            x = x >> 0;
-            y = y >> 0;
-            rgb = rgb >> 0;
-            const cols = Math.idiv(this._length, this._matrixWidth);
-            if (x < 0 || x >= this._matrixWidth || y < 0 || y >= cols) return;
-            let i = x + y * this._matrixWidth;
-            this.setPixelColor(i, rgb);
-        }
-
-        /**
-         * For NeoPixels with RGB+W LEDs, set the white LED brightness. This only works for RGB+W NeoPixels.
-         * @param pixeloffset position of the LED in the strip
-         * @param white brightness of the white LED
-         */
-        //% blockId="neopixel_set_pixel_white" block="%strip|set pixel white LED at %pixeloffset|to %white"
-        //% strip.defl=strip
-        //% blockGap=8
-        //% weight=80
-        //% parts="neopixel" advanced=true
-        setPixelWhiteLED(pixeloffset: number, white: number): void {
-            if (this._mode === NeoPixelMode.RGBW) {
-                this.setPixelW(pixeloffset >> 0, white >> 0);
-            }
-        }
 
         /**
          * Send all the changes to the strip.
@@ -270,7 +183,7 @@ namespace neopixel {
          */
         //% blockId="neopixel_length" block="%strip|length" blockGap=8
         //% strip.defl=strip
-        //% weight=60 advanced=true
+        //% weight=60 
         length() {
             return this._length;
         }
@@ -282,7 +195,7 @@ namespace neopixel {
         //% blockId="neopixel_set_brightness" block="%strip|set brightness %brightness" blockGap=8
         //% strip.defl=strip
         //% weight=59
-        //% parts="neopixel" advanced=true
+        //% parts="neopixel" 
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
         }
@@ -293,7 +206,7 @@ namespace neopixel {
         //% blockId="neopixel_each_brightness" block="%strip|ease brightness" blockGap=8
         //% strip.defl=strip
         //% weight=58
-        //% parts="neopixel" advanced=true
+        //% parts="neopixel"
         easeBrightness(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             const br = this.brightness;
@@ -373,7 +286,7 @@ namespace neopixel {
          * Set the pin where the neopixel is connected, defaults to P0.
          */
         //% weight=10
-        //% parts="neopixel" advanced=true
+        //% parts="neopixel"
         setPin(pin: DigitalPin): void {
             this.pin = pin;
             pins.digitalWritePin(this.pin, 0);
@@ -385,7 +298,6 @@ namespace neopixel {
          */
         //% weight=9 blockId=neopixel_power block="%strip|power (mA)"
         //% strip.defl=strip
-        //% advanced=true
         power(): number {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             const end = this.start + this._length;
@@ -513,7 +425,6 @@ namespace neopixel {
      */
     //% weight=1
     //% blockId="neopixel_rgb" block="red %red|green %green|blue %blue"
-    //% advanced=true
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
@@ -523,7 +434,6 @@ namespace neopixel {
     */
     //% weight=2 blockGap=8
     //% blockId="neopixel_colors" block="%color"
-    //% advanced=true
     export function colors(color: NeoPixelColors): number {
         return color;
     }
