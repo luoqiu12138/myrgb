@@ -2,25 +2,25 @@
  * Well known colors for a NeoPixel strip
  */
 enum NeoPixelColors {
-    //% block=red
+    //% block=红色
     Red = 0xFF0000,
-    //% block=orange
+    //% block=橙色
     Orange = 0xFFA500,
-    //% block=yellow
+    //% block=黄色
     Yellow = 0xFFFF00,
-    //% block=green
+    //% block=绿色
     Green = 0x00FF00,
-    //% block=blue
+    //% block=蓝色
     Blue = 0x0000FF,
-    //% block=indigo
+    //% block=靛蓝色
     Indigo = 0x4b0082,
-    //% block=violet
+    //% block=蓝紫色
     Violet = 0x8a2be2,
-    //% block=purple
+    //% block=紫色
     Purple = 0xFF00FF,
-    //% block=white
+    //% block=白色
     White = 0xFFFFFF,
-    //% block=black
+    //% block=黑色
     Black = 0x000000
 }
 
@@ -73,7 +73,7 @@ namespace neopixel {
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="%strip|show rainbow from %startHue|to %endHue"
+        //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹 开始色相值%startHue|结束色相值 %endHue"
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
@@ -141,7 +141,7 @@ namespace neopixel {
          * @param pixeloffset position of the NeoPixel in the strip
          * @param rgb RGB color of the LED
          */
-        //% blockId="neopixel_set_pixel_color" block="%strip|set pixel color at %pixeloffset|to %rgb=neopixel_colors"
+        //% blockId="neopixel_set_pixel_color" block="将%strip|第%pixeloffset|个灯珠颜色设置为%rgb=neopixel_colors"
         //% strip.defl=strip
         //% blockGap=8
         //% weight=80
