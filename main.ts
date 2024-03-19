@@ -73,10 +73,6 @@ namespace neopixel {
          * @param startHue the start hue value for the rainbow, eg: 1
          * @param endHue the end hue value for the rainbow, eg: 360
          */
-        //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹 开始色相值为%startHue|结束色相值为%endHue"
-        //% strip.defl=strip
-        //% weight=60 blockGap=8
-        //% parts="neopixel"
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
@@ -175,7 +171,7 @@ namespace neopixel {
          * Set the brightness of the strip. This flag only applies to future operation.
          * @param brightness a measure of LED brightness in 0-255. eg: 255
          */
-        //% blockId="neopixel_set_brightness" block="设置%strip|所有灯珠亮度为%brightness" blockGap=8
+        //% blockId="neopixel_set_brightness" block="设置%strip|所有灯珠亮度为 %brightness|" blockGap=8
         //% strip.defl=strip
         //% weight=85
         //% parts="neopixel" 
