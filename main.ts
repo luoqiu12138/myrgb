@@ -350,7 +350,7 @@ namespace neopixel {
      * @param pin the pin where the neopixel is connected.
      * @param numleds number of leds in the strip, eg: 24,30,60,64
      */
-    //% blockId="neopixel_create" block="NeoPixel at pin %pin|with %numleds|leds as %mode"
+    //% blockId="neopixel_create" block="引脚%pin|灯珠个数%numleds|显示模式%mode"
     //% weight=90 blockGap=8
     //% parts="neopixel"
     //% trackArgs=0,2
@@ -375,7 +375,7 @@ namespace neopixel {
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
     //% weight=1
-    //% blockId="neopixel_rgb" block="red %red|green %green|blue %blue"
+    //% blockId="neopixel_rgb" block="R%red|G%green|B%blue"
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
@@ -411,7 +411,7 @@ namespace neopixel {
      * @param s saturation from 0 to 99
      * @param l luminosity from 0 to 99
      */
-    //% blockId=neopixelHSL block="hue %h|saturation %s|luminosity %l"
+    //% blockId=neopixelHSL block="色相值%h|饱和度%s|亮度%l"
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
