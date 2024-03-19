@@ -2,25 +2,25 @@
  * Well known colors for a NeoPixel strip
  */
 enum NeoPixelColors {
-    //% block=红色
+    //% block=red
     Red = 0xFF0000,
-    //% block=橙色
+    //% block=orange
     Orange = 0xFFA500,
-    //% block=黄色
+    //% block=yellow
     Yellow = 0xFFFF00,
-    //% block=绿色
+    //% block=green
     Green = 0x00FF00,
-    //% block=蓝色
+    //% block=blue
     Blue = 0x0000FF,
-    //% block=靛蓝色
+    //% block=indigo
     Indigo = 0x4b0082,
-    //% block=蓝紫色
+    //% block=violet
     Violet = 0x8a2be2,
-    //% block=紫色
+    //% block=purple
     Purple = 0xFF00FF,
-    //% block=白色
+    //% block=white
     White = 0xFFFFFF,
-    //% block=黑色
+    //% block=black
     Black = 0x000000
 }
 
