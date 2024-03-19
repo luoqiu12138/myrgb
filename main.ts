@@ -137,7 +137,6 @@ namespace neopixel {
 
         /**
          * Set LED to a given color (range 0-255 for r, g, b).
-         * You need to call ``show`` to make the changes visible.
          * @param pixeloffset position of the NeoPixel in the strip
          * @param rgb RGB color of the LED
          */
@@ -148,9 +147,8 @@ namespace neopixel {
         //% parts="neopixel"
         setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
+            ws2812b.sendBuffer(this.buf, this.pin);
         }
-
-
 
         /**
          * Send all the changes to the strip.
@@ -167,7 +165,6 @@ namespace neopixel {
 
         /**
          * Turn off all LEDs.
-         * You need to call ``show`` to make the changes visible.
          */
         //% blockId="neopixel_clear" block="关闭%strip|所有灯珠"
         //% strip.defl=strip
@@ -176,6 +173,7 @@ namespace neopixel {
         clear(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
+            ws2812b.sendBuffer(this.buf, this.pin);
         }
 
 
@@ -217,7 +215,6 @@ namespace neopixel {
 
         /**
          * Shift LEDs forward and clear with zeros.
-         * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to shift forward, eg: 1
          */
         //% blockId="neopixel_shift" block="将%strip|的灯珠向前移动%offset个单位" blockGap=8
@@ -228,11 +225,11 @@ namespace neopixel {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.shift(-offset * stride, this.start * stride, this._length * stride)
+            ws2812b.sendBuffer(this.buf, this.pin);
         }
 
         /**
          * Rotate LEDs forward.
-         * You need to call ``show`` to make the changes visible.
          * @param offset number of pixels to rotate forward, eg: 1
          */
         //% blockId="neopixel_rotate" block="将%strip|灯珠以%offset个单位向前循环移动" blockGap=8
@@ -243,6 +240,7 @@ namespace neopixel {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.rotate(-offset * stride, this.start * stride, this._length * stride)
+            ws2812b.sendBuffer(this.buf, this.pin);
         }
 
         /**
