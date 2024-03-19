@@ -39,7 +39,7 @@ enum NeoPixelMode {
 /**
  * Functions to operate NeoPixel strips.
  */
-//% weight=5 color=#2699BF icon="\uf110"
+//% weight=5 color=#2699BF icon="\uf110" block="neopixel"
 namespace neopixel {
     /**
      * A NeoPixel strip
@@ -61,7 +61,7 @@ namespace neopixel {
         //% blockId="neopixel_set_strip_color" block="设置%strip|所有灯珠颜色为%rgb=neopixel_colors"
         //% strip.defl=strip
         //% weight=85 blockGap=8
-        //% parts="neopixel"
+        //% parts="neopixel" trackArgs=0
         showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
@@ -75,8 +75,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_set_strip_rainbow" block="设置%strip|显示彩虹 开始色相值%startHue|结束色相值 %endHue"
         //% strip.defl=strip
-        //% weight=85 blockGap=8
-        //% parts="neopixel"
+        //% weight=80 blockGap=8
+        //% parts="neopixel"  trackArgs=0
         showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
@@ -143,9 +143,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_set_pixel_color" block="将%strip|第%pixeloffset|个灯珠颜色设置为%rgb=neopixel_colors"
         //% strip.defl=strip
-        //% blockGap=8
-        //% weight=80
-        //% parts="neopixel" 
+        //% weight=80  blockGap=8
+        //% parts="neopixel" trackArgs=0
         setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
         }
@@ -155,8 +154,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_show" block="%strip|show" blockGap=8
         //% strip.defl=strip
-        //% weight=79
-        //% parts="neopixel"
+        //% weight=79  blockGap=8
+        //% parts="neopixel" trackArgs=0
         show() {
             // only supported in beta
             // ws2812b.setBufferMode(this.pin, this._mode);
@@ -169,8 +168,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_clear" block="关闭%strip|所有灯珠"
         //% strip.defl=strip
-        //% weight=76
-        //% parts="neopixel"
+        //% weight=76  blockGap=8
+        //% parts="neopixel" trackArgs=0
         clear(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
@@ -181,7 +180,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_length" block="%strip|中设置的灯珠个数" blockGap=8
         //% strip.defl=strip
-        //% weight=60 
+        //% weight=60   blockGap=8
+        //% parts="neopixel" trackArgs=0
         length() {
             return this._length;
         }
@@ -192,8 +192,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_set_brightness" block="设置%strip|亮度为%brightness" blockGap=8
         //% strip.defl=strip
-        //% weight=59
-        //% parts="neopixel"
+        //% weight=59 blockGap=8
+        //% parts="neopixel" trackArgs=0
         setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
         }
@@ -203,10 +203,10 @@ namespace neopixel {
          * @param start offset in the LED strip to start the range
          * @param length number of LEDs in the range. eg: 4
          */
-        //% weight=89
         //% blockId="neopixel_range" block="%strip|从%start开始|灯珠个数为%length|leds"
         //% strip.defl=strip
-        //% parts="neopixel"
+        //% weight=89 blockGap=8
+        //% parts="neopixel" trackArgs=0
         //% blockSetVariable=range
         range(start: number, length: number): Strip {
             start = start >> 0;
@@ -229,8 +229,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_shift" block="将%strip|的灯珠向前移动%offset个单位" blockGap=8
         //% strip.defl=strip
-        //% weight=40
-        //% parts="neopixel"
+        //% weight=40 blockGap=8
+        //% parts="neopixel" trackArgs=0
         shift(offset: number = 1): void {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
@@ -244,8 +244,8 @@ namespace neopixel {
          */
         //% blockId="neopixel_rotate" block="将%strip|的灯珠以%offset个单位向前循环移动" blockGap=8
         //% strip.defl=strip
-        //% weight=39
-        //% parts="neopixel"
+        //% weight=39 blockGap=8
+        //% parts="neopixel" trackArgs=0
         rotate(offset: number = 1): void {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
@@ -255,8 +255,6 @@ namespace neopixel {
         /**
          * Set the pin where the neopixel is connected, defaults to P0.
          */
-        //% weight=10
-        //% parts="neopixel"
         setPin(pin: DigitalPin): void {
             this.pin = pin;
             pins.digitalWritePin(this.pin, 0);
@@ -352,8 +350,7 @@ namespace neopixel {
      */
     //% blockId="neopixel_create" block="引脚%pin|灯珠个数%numleds|显示模式%mode"
     //% weight=90 blockGap=8
-    //% parts="neopixel"
-    //% trackArgs=0,2
+    //% parts="neopixel" trackArgs=0
     //% blockSetVariable=strip
     export function create(pin: DigitalPin, numleds: number, mode: NeoPixelMode): Strip {
         let strip = new Strip();
@@ -374,8 +371,10 @@ namespace neopixel {
      * @param green value of the green channel between 0 and 255. eg: 255
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
-    //% weight=1
+    
     //% blockId="neopixel_rgb" block="R%red|G%green|B%blue"
+    //% weight=1 blockGap=8
+    //% parts="neopixel" trackArgs=0
     export function rgb(red: number, green: number, blue: number): number {
         return packRGB(red, green, blue);
     }
@@ -383,7 +382,6 @@ namespace neopixel {
     /**
      * Gets the RGB value of a known color
     */
-    //% weight=2 blockGap=8
     //% blockId="neopixel_colors"
     export function colors(color: NeoPixelColors): number {
         return color;
@@ -412,6 +410,8 @@ namespace neopixel {
      * @param l luminosity from 0 to 99
      */
     //% blockId=neopixelHSL block="色相值%h|饱和度%s|亮度%l"
+    //% weight=5 blockGap=8
+    //% parts="neopixel" trackArgs=0
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
