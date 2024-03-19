@@ -2,25 +2,25 @@
  * Well known colors for a NeoPixel strip
  */
 enum NeoPixelColors {
-    //% block=red
+    //% block=红色
     Red = 0xFF0000,
-    //% block=orange
+    //% block=橙色
     Orange = 0xFFA500,
-    //% block=yellow
+    //% block=黄色
     Yellow = 0xFFFF00,
-    //% block=green
+    //% block=绿色
     Green = 0x00FF00,
-    //% block=blue
+    //% block=蓝色
     Blue = 0x0000FF,
-    //% block=indigo
+    //% block=靛蓝色
     Indigo = 0x4b0082,
-    //% block=violet
+    //% block=蓝紫色
     Violet = 0x8a2be2,
-    //% block=purple
+    //% block=紫色的
     Purple = 0xFF00FF,
-    //% block=white
+    //% block=白色
     White = 0xFFFFFF,
-    //% block=black
+    //% block=黑色
     Black = 0x000000
 }
 
@@ -374,7 +374,7 @@ namespace neopixel {
      * @param l luminosity from 0 to 99
      */
     //% blockId=neopixelHSL block="色调%h|饱和度%s|亮度%l"
-    //% weight=2 blockGap=10
+    //% weight=10 blockGap=10
     export function hsl(h: number, s: number, l: number): number {
         h = Math.round(h);
         s = Math.round(s);
