@@ -35,7 +35,6 @@ enum NeoPixelMode {
     //% block="RGB (RGB format)"
     RGB_RGB = 3
 }
-
 /**
  * Functions to operate NeoPixel strips.
  */
@@ -44,6 +43,12 @@ namespace neopixel {
     /**
      * A NeoPixel strip
      */
+    export function sendBuffer(buf: Buffer, pin: DigitalPin) {
+    }
+
+    //% shim=setBufferMode
+    export function setBufferMode(pin: DigitalPin, mode: number) {
+    }
     export class Strip {
         buf: Buffer;
         pin: DigitalPin;
@@ -143,14 +148,14 @@ namespace neopixel {
         //% parts="neopixel"
         setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
-            ws2812b.sendBuffer(this.buf, this.pin);
+            sendBuffer(this.buf, this.pin);
         }
 
 
         show() {
             // only supported in beta
             // ws2812b.setBufferMode(this.pin, this._mode);
-            ws2812b.sendBuffer(this.buf, this.pin);
+            sendBuffer(this.buf, this.pin);
         }
 
         /**
@@ -163,7 +168,7 @@ namespace neopixel {
         clear(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
-            ws2812b.sendBuffer(this.buf, this.pin);
+            sendBuffer(this.buf, this.pin);
         }
 
 
@@ -191,7 +196,7 @@ namespace neopixel {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.shift(-offset * stride, this.start * stride, this._length * stride)
-            ws2812b.sendBuffer(this.buf, this.pin);
+            sendBuffer(this.buf, this.pin);
         }
 
         /**
@@ -206,7 +211,7 @@ namespace neopixel {
             offset = offset >> 0;
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.rotate(-offset * stride, this.start * stride, this._length * stride)
-            ws2812b.sendBuffer(this.buf, this.pin);
+           sendBuffer(this.buf, this.pin);
         }
 
         /**
